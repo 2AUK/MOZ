@@ -42,6 +42,7 @@ impl GridSix {
         //let mut weight_sum = 0.0;
         for coord in self.coord.iter() {
             sum += self.weight * self.compute(coord);
+            println!("{}, {}", self.compute(coord), self.weight * self.compute(coord))
             //weight_sum += self.weight;
         }
         //println!("{}", weight_sum);
