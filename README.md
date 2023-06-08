@@ -11,7 +11,7 @@ Currently the Lebedev implementation is for order 6, and is used to integrate th
 
 $$\int_0^{2 \pi} d\phi \int_0^{\pi} d\theta \sin{\theta}\cos{2\theta} = -\frac{2}{3} 2\pi$$
 
-$$\int_0^{2 \pi} d\phi \int_0^{\pi} d\theta \sin{\theta~Y_0^0(\theta, \phi) = 2\pi\sqrt{\frac{1}{\pi}}$$
+$$\int_0^{2 \pi} d\phi \int_0^{\pi} d\theta \sin{\theta}Y_0^0(\theta, \phi) = 2\pi\sqrt{\frac{1}{\pi}}$$
 
 $$\int_0^{2 \pi} d\phi \int_0^{\pi} d\theta \sin{\theta}Y_1^0(\theta, \phi) = 0$$
 
