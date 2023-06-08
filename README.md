@@ -1,4 +1,4 @@
-#Molecular Ornstein-Zernike
+# Molecular Ornstein-Zernike
 
 ## Current Status
 Working on implementing angular quadratures
