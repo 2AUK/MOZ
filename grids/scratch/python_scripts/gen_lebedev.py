@@ -1,20 +1,36 @@
 import numpy as np
 import sys
+from pathlib import Path
 
-PHI, THETA, WEIGHTS = np.loadtxt("lebedev_009.txt", unpack=True)
+tables_path = Path('./tables').resolve()
 
-ORDER = PHI.shape[0]
+data_paths = sorted(list(tables_path.rglob('*.txt')))
 
-def gen_const_arr(opath, name):
-    with open(opath, 'w') as f:
+order_list = []
+const_list = []
+
+with open('lebedev_data.rs', 'w') as f:
+    for path in data_paths:
+        PHI, THETA, WEIGHTS = np.loadtxt(path, unpack=True)
+
+        ORDER = PHI.shape[0]
+
+        order_name = path.stem.split('_')[1]
+
+        name = "LD" + order_name
+
+        order_list.append(ORDER)
+        const_list.append(name)
+
         f.write(f"pub const {name}: [(f64, f64, f64); {ORDER}] = [\n")
         for i in range(ORDER):
             phi = PHI[i]
             theta = THETA[i]
             weight = WEIGHTS[i]
-            f.write(f"    ({phi}, {theta}, {weight}),\n")
-        f.write(f"];\n")
+            f.write(f"    ({theta}, {phi}, {weight}),\n")
+        f.write(f"];\n\n")
 
-
-if __name__ == "__main__":
-    gen_const_arr(sys.argv[1], sys.argv[2])
+    f.write(f'pub enum LDGRIDS {{\n')
+    for order, arr_name in zip(order_list, const_list):
+        f.write(f'    order_{order}({arr_name}),\n')
+    f.write(f'}}\n')
