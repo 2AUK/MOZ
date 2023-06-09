@@ -17,4 +17,6 @@ $$\int_0^{2 \pi} d\psi \int_0^{\pi} d\theta \sin{\theta} Y_1^0(\theta, \psi) = 0
 
 $$\int_0^{2 \pi} d\psi \int_0^{\pi} d\theta \sin{\theta} Y_2^0(\theta, \psi) = 0$$
 
-The Chebyshev-Gauss implementation is a work in progress.
+The Chebyshev-Gauss implementation is more flexible in order. The test uses order 8. Currently the function $\frac{e^x}{\sqrt{1-x^2}$ is implemented as a test.
+
+$$\int_{-1}^{1} dx \frac{e^x}{\sqrt{1-x^2} \approx 3.977463260506145 $$
