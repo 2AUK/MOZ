@@ -1,12 +1,14 @@
-use std::f64::consts::PI;
-
-// Grid structs might be superfluous
-pub struct RadialGrid { }
-
-pub struct AngularGrid { }
-
-pub struct Grid { }
-
 fn main() {
-    println!("Hello, world!");
+    println!("
+     dMMMMMMMMb  .aMMMb dMMMMMP 
+    dMP\"dMP\"dMP dMP\"dMP  .dMP\"  
+   dMP dMP dMP dMP dMP .dMP\"    
+  dMP dMP dMP dMP.aMP.dMP\"      
+ dMP dMP dMP  VMMMP\"dMMMMMP     
+
+ MOZ, the Molecular Ornstein-Zernike Solver...
+ We solve things so you don't have to
+                                ");
 }
+
+                               
