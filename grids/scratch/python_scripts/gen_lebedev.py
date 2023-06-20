@@ -22,6 +22,7 @@ with open('lebedev_data.rs', 'w') as f:
         order_list.append(ORDER)
         const_list.append(name)
 
+        f.write(f"use phf::phf_map;\n")
         f.write(f"pub const {name}: [(f64, f64, f64); {ORDER}] = [\n")
         for i in range(ORDER):
             phi = PHI[i]
@@ -30,7 +31,7 @@ with open('lebedev_data.rs', 'w') as f:
             f.write(f"    ({theta}, {phi}, {weight}),\n")
         f.write(f"];\n\n")
 
-    f.write(f'pub enum LDGRIDS {{\n')
+    f.write(f'static LDGRIDS: phf::Map<&\'static str, [(f64, f64, f64); N]> = phf_map! {{\n')
     for order, arr_name in zip(order_list, const_list):
-        f.write(f'    order_{order}({arr_name}),\n')
-    f.write(f'}}\n')
+        f.write(f'    "{order}" => {arr_name},\n')
+    f.write(f'}};\n')
