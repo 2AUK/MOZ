@@ -47013,7 +47013,7 @@ static LD_OFFSETS: phf::Map<&'static str, (usize, usize)> = phf_map! {
     "LD131" => (41166, 46976),
 };
 
-pub enum LDGrids {
+pub enum LebedevGrid {
     LD003,
     LD005,
     LD007,
@@ -47048,40 +47048,40 @@ pub enum LDGrids {
     LD131,
 }
 
-pub fn get_lebedev_grid(grid: LDGrids) -> &'static [(f64, f64, f64)] {
+pub fn get_lebedev_grid(grid: LebedevGrid) -> &'static [(f64, f64, f64)] {
     match grid {
-        LDGrids::LD003 => &LD_DATA[LD_OFFSETS["LD003"].0..LD_OFFSETS["LD003"].1],
-        LDGrids::LD005 => &LD_DATA[LD_OFFSETS["LD005"].0..LD_OFFSETS["LD005"].1],
-        LDGrids::LD007 => &LD_DATA[LD_OFFSETS["LD007"].0..LD_OFFSETS["LD007"].1],
-        LDGrids::LD009 => &LD_DATA[LD_OFFSETS["LD009"].0..LD_OFFSETS["LD009"].1],
-        LDGrids::LD011 => &LD_DATA[LD_OFFSETS["LD011"].0..LD_OFFSETS["LD011"].1],
-        LDGrids::LD013 => &LD_DATA[LD_OFFSETS["LD013"].0..LD_OFFSETS["LD013"].1],
-        LDGrids::LD015 => &LD_DATA[LD_OFFSETS["LD015"].0..LD_OFFSETS["LD015"].1],
-        LDGrids::LD017 => &LD_DATA[LD_OFFSETS["LD017"].0..LD_OFFSETS["LD017"].1],
-        LDGrids::LD019 => &LD_DATA[LD_OFFSETS["LD019"].0..LD_OFFSETS["LD019"].1],
-        LDGrids::LD021 => &LD_DATA[LD_OFFSETS["LD021"].0..LD_OFFSETS["LD021"].1],
-        LDGrids::LD023 => &LD_DATA[LD_OFFSETS["LD023"].0..LD_OFFSETS["LD023"].1],
-        LDGrids::LD025 => &LD_DATA[LD_OFFSETS["LD025"].0..LD_OFFSETS["LD025"].1],
-        LDGrids::LD027 => &LD_DATA[LD_OFFSETS["LD027"].0..LD_OFFSETS["LD027"].1],
-        LDGrids::LD029 => &LD_DATA[LD_OFFSETS["LD029"].0..LD_OFFSETS["LD029"].1],
-        LDGrids::LD031 => &LD_DATA[LD_OFFSETS["LD031"].0..LD_OFFSETS["LD031"].1],
-        LDGrids::LD035 => &LD_DATA[LD_OFFSETS["LD035"].0..LD_OFFSETS["LD035"].1],
-        LDGrids::LD041 => &LD_DATA[LD_OFFSETS["LD041"].0..LD_OFFSETS["LD041"].1],
-        LDGrids::LD047 => &LD_DATA[LD_OFFSETS["LD047"].0..LD_OFFSETS["LD047"].1],
-        LDGrids::LD053 => &LD_DATA[LD_OFFSETS["LD053"].0..LD_OFFSETS["LD053"].1],
-        LDGrids::LD059 => &LD_DATA[LD_OFFSETS["LD059"].0..LD_OFFSETS["LD059"].1],
-        LDGrids::LD065 => &LD_DATA[LD_OFFSETS["LD065"].0..LD_OFFSETS["LD065"].1],
-        LDGrids::LD071 => &LD_DATA[LD_OFFSETS["LD071"].0..LD_OFFSETS["LD071"].1],
-        LDGrids::LD077 => &LD_DATA[LD_OFFSETS["LD077"].0..LD_OFFSETS["LD077"].1],
-        LDGrids::LD083 => &LD_DATA[LD_OFFSETS["LD083"].0..LD_OFFSETS["LD083"].1],
-        LDGrids::LD089 => &LD_DATA[LD_OFFSETS["LD089"].0..LD_OFFSETS["LD089"].1],
-        LDGrids::LD095 => &LD_DATA[LD_OFFSETS["LD095"].0..LD_OFFSETS["LD095"].1],
-        LDGrids::LD101 => &LD_DATA[LD_OFFSETS["LD101"].0..LD_OFFSETS["LD101"].1],
-        LDGrids::LD107 => &LD_DATA[LD_OFFSETS["LD107"].0..LD_OFFSETS["LD107"].1],
-        LDGrids::LD113 => &LD_DATA[LD_OFFSETS["LD113"].0..LD_OFFSETS["LD113"].1],
-        LDGrids::LD119 => &LD_DATA[LD_OFFSETS["LD119"].0..LD_OFFSETS["LD119"].1],
-        LDGrids::LD125 => &LD_DATA[LD_OFFSETS["LD125"].0..LD_OFFSETS["LD125"].1],
-        LDGrids::LD131 => &LD_DATA[LD_OFFSETS["LD131"].0..LD_OFFSETS["LD131"].1],
+        LebedevGrid::LD003 => &LD_DATA[LD_OFFSETS["LD003"].0..LD_OFFSETS["LD003"].1],
+        LebedevGrid::LD005 => &LD_DATA[LD_OFFSETS["LD005"].0..LD_OFFSETS["LD005"].1],
+        LebedevGrid::LD007 => &LD_DATA[LD_OFFSETS["LD007"].0..LD_OFFSETS["LD007"].1],
+        LebedevGrid::LD009 => &LD_DATA[LD_OFFSETS["LD009"].0..LD_OFFSETS["LD009"].1],
+        LebedevGrid::LD011 => &LD_DATA[LD_OFFSETS["LD011"].0..LD_OFFSETS["LD011"].1],
+        LebedevGrid::LD013 => &LD_DATA[LD_OFFSETS["LD013"].0..LD_OFFSETS["LD013"].1],
+        LebedevGrid::LD015 => &LD_DATA[LD_OFFSETS["LD015"].0..LD_OFFSETS["LD015"].1],
+        LebedevGrid::LD017 => &LD_DATA[LD_OFFSETS["LD017"].0..LD_OFFSETS["LD017"].1],
+        LebedevGrid::LD019 => &LD_DATA[LD_OFFSETS["LD019"].0..LD_OFFSETS["LD019"].1],
+        LebedevGrid::LD021 => &LD_DATA[LD_OFFSETS["LD021"].0..LD_OFFSETS["LD021"].1],
+        LebedevGrid::LD023 => &LD_DATA[LD_OFFSETS["LD023"].0..LD_OFFSETS["LD023"].1],
+        LebedevGrid::LD025 => &LD_DATA[LD_OFFSETS["LD025"].0..LD_OFFSETS["LD025"].1],
+        LebedevGrid::LD027 => &LD_DATA[LD_OFFSETS["LD027"].0..LD_OFFSETS["LD027"].1],
+        LebedevGrid::LD029 => &LD_DATA[LD_OFFSETS["LD029"].0..LD_OFFSETS["LD029"].1],
+        LebedevGrid::LD031 => &LD_DATA[LD_OFFSETS["LD031"].0..LD_OFFSETS["LD031"].1],
+        LebedevGrid::LD035 => &LD_DATA[LD_OFFSETS["LD035"].0..LD_OFFSETS["LD035"].1],
+        LebedevGrid::LD041 => &LD_DATA[LD_OFFSETS["LD041"].0..LD_OFFSETS["LD041"].1],
+        LebedevGrid::LD047 => &LD_DATA[LD_OFFSETS["LD047"].0..LD_OFFSETS["LD047"].1],
+        LebedevGrid::LD053 => &LD_DATA[LD_OFFSETS["LD053"].0..LD_OFFSETS["LD053"].1],
+        LebedevGrid::LD059 => &LD_DATA[LD_OFFSETS["LD059"].0..LD_OFFSETS["LD059"].1],
+        LebedevGrid::LD065 => &LD_DATA[LD_OFFSETS["LD065"].0..LD_OFFSETS["LD065"].1],
+        LebedevGrid::LD071 => &LD_DATA[LD_OFFSETS["LD071"].0..LD_OFFSETS["LD071"].1],
+        LebedevGrid::LD077 => &LD_DATA[LD_OFFSETS["LD077"].0..LD_OFFSETS["LD077"].1],
+        LebedevGrid::LD083 => &LD_DATA[LD_OFFSETS["LD083"].0..LD_OFFSETS["LD083"].1],
+        LebedevGrid::LD089 => &LD_DATA[LD_OFFSETS["LD089"].0..LD_OFFSETS["LD089"].1],
+        LebedevGrid::LD095 => &LD_DATA[LD_OFFSETS["LD095"].0..LD_OFFSETS["LD095"].1],
+        LebedevGrid::LD101 => &LD_DATA[LD_OFFSETS["LD101"].0..LD_OFFSETS["LD101"].1],
+        LebedevGrid::LD107 => &LD_DATA[LD_OFFSETS["LD107"].0..LD_OFFSETS["LD107"].1],
+        LebedevGrid::LD113 => &LD_DATA[LD_OFFSETS["LD113"].0..LD_OFFSETS["LD113"].1],
+        LebedevGrid::LD119 => &LD_DATA[LD_OFFSETS["LD119"].0..LD_OFFSETS["LD119"].1],
+        LebedevGrid::LD125 => &LD_DATA[LD_OFFSETS["LD125"].0..LD_OFFSETS["LD125"].1],
+        LebedevGrid::LD131 => &LD_DATA[LD_OFFSETS["LD131"].0..LD_OFFSETS["LD131"].1],
     }
 }
 
@@ -47091,7 +47091,7 @@ mod tests {
 
     #[test]
     fn grid_selection() {
-        let grid = get_lebedev_grid(LDGrids::LD131);
+        let grid = get_lebedev_grid(LebedevGrid::LD131);
         println!("{:?}", grid);
     }
 
