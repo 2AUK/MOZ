@@ -57,3 +57,21 @@ with open('lebedev_data.rs', 'w') as f:
         f.write(f'        LD_GRIDS::{arr_name} => &LD_DATA[LD_OFFSETS["{arr_name}"].0 .. LD_OFFSETS["{arr_name}"].1],\n')
     f.write(f'    }}\n')
     f.write(f'}}')
+
+    f.write(f'const FIRST_LAST_ELEM: [(LebedevGrid, (f64, f64, f64), (f64, f64, f64)); 32] = [\n')
+    for path in data_paths:
+        PHI, THETA, WEIGHTS = np.loadtxt(path, unpack=True)
+
+        first_theta = THETA[0]
+        first_phi = PHI[0]
+        first_weight = WEIGHTS[0]
+
+        last_theta = THETA[-1]
+        last_phi = PHI[-1]
+        last_weight = WEIGHTS[-1]
+
+        order_name = path.stem.split('_')[1]
+        name = "LD" + order_name
+
+        f.write(f"    (LebedevGrid::{name}, ({first_theta}, {first_phi}, {first_weight}), ({last_theta}, {last_phi}, {last_weight})),\n")
+    f.write(f"];\n\n")
