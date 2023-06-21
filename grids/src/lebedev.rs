@@ -1,7 +1,8 @@
 use std::f64::consts::PI;
+use std::iter::zip;
 use crate::lebedev_data::{LebedevGrid, get_lebedev_grid};
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 
 pub struct LebedevLaikovGrid {
     weight: Vec<f64>,
@@ -11,7 +12,18 @@ pub struct LebedevLaikovGrid {
 impl LebedevLaikovGrid {
     pub fn new(grid: LebedevGrid) -> Self {
         let grid = get_lebedev_grid(grid);
-        todo!()
+        let mut weight = Vec::new();
+        let mut coord = Vec::new();
+        for elem in grid{
+            weight.push(elem.2);
+            coord.push((elem.0, elem.1));
+        }
+        LebedevLaikovGrid { weight, coord }
+    }
+
+    pub fn integrate(&self, f: fn(&f64, &f64) -> f64) -> f64 {
+        let mut grid_iter = zip(&self.weight, &self.coord);
+        4.0 * PI * grid_iter.map(|(weight, (theta, phi))| weight * f(theta, phi)).sum::<f64>()
     }
 }
 
@@ -85,9 +97,32 @@ impl GridSix {
 mod tests {
     use super::*;
 
+    fn cos2theta(theta: &f64, phi: &f64) -> f64 {
+        let theta2 = theta.to_radians();
+        theta2.cos()
+    }
+
     #[test]
     fn grid_initialisation() {
-        let grid = GridSix::new();
-        println!("{:?}", grid.integrate());
+        let grid = LebedevLaikovGrid::new(LebedevGrid::LD003);
+        let test_grid = LebedevLaikovGrid { 
+            weight: vec![0.166666666666667, 0.166666666666667, 0.166666666666667, 0.166666666666667, 0.166666666666667, 0.166666666666667],
+            coord: vec![
+                (90.0, 0.0),
+                (90.0, 180.0),
+                (90.0, 90.0),
+                (90.0, -90.0),
+                (0.0, 90.0),
+                (180.0, 90.0),
+            ]
+        };
+        assert_eq!(grid, test_grid);
+    }
+
+    #[test]
+    fn cos2theta_integral() {
+        let grid = LebedevLaikovGrid::new(LebedevGrid::LD003);
+        let integral = grid.integrate(cos2theta);
+        println!("{}", integral);
     }
 }

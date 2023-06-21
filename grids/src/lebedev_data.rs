@@ -47089,7 +47089,7 @@ pub fn get_lebedev_grid(grid: LebedevGrid) -> &'static [(f64, f64, f64)] {
 mod tests {
     use super::*;
 
-    const test_data: [(LebedevGrid, (f64, f64, f64), (f64, f64, f64)); 32] = [
+    const TEST_DATA: [(LebedevGrid, (f64, f64, f64), (f64, f64, f64)); 32] = [
         (
             LebedevGrid::LD003,
             (90.0, 0.0, 0.166666666666667),
@@ -47269,7 +47269,7 @@ mod tests {
 
     #[test]
     fn check_grid_limits() {
-        for (grid_name, known_first, known_last) in test_data {
+        for (grid_name, known_first, known_last) in TEST_DATA {
             let grid = get_lebedev_grid(grid_name);
             let first = grid.first().unwrap();
             let last = grid.last().unwrap();
