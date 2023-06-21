@@ -9,4 +9,5 @@ edition = "2021"
 arrayvec = "0.7.4"
 flatvec = "0.3.0"
 ndarray = "0.15.6"
+phf = { version = "0.11.1", features = ["phf_macros", "macros"] }
 smallvec = "1.10.0"

@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use phf::phf_map;
 
 pub const LD_DATA: [(f64, f64, f64); 20] = [
     (90.0, 0.0, 0.166666666666667),
@@ -23,10 +23,10 @@ pub const LD_DATA: [(f64, f64, f64); 20] = [
     (125.26438968275465, -135.0, 0.075),
 ];
 
-pub const OFFSETS: [(usize, usize); 2] = [
-    (0, 6),
-    (6, 20),
-];
+static OFFSETS: phf::Map<&'static str, (usize, usize)> = phf_map! {
+    "6" => (0, 6),
+    "14" => (6, 20),
+};
 
 #[cfg(test)]
 mod tests {
@@ -34,8 +34,8 @@ mod tests {
 
     #[test]
     fn grid_selection() {
-        let LD003 = &LD_DATA[OFFSETS[0].0 .. OFFSETS[0].1];
-        let LD005 = &LD_DATA[OFFSETS[1].0 .. OFFSETS[1].1];
+        let LD003 = &LD_DATA[OFFSETS["6"].0 .. OFFSETS["6"].1];
+        let LD005 = &LD_DATA[OFFSETS["14"].0 .. OFFSETS["14"].1];
         println!("{:?}\n{}", LD003.to_vec(), LD003.to_vec().len());
         println!("{:?}\n{}", LD005.to_vec(), LD005.to_vec().len());
     }
