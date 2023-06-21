@@ -30,31 +30,29 @@ impl LebedevLaikovGrid {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use approx::{assert_abs_diff_eq, relative_eq};
+
+    const PRECISION: f64 = 1e-7;
 
     fn one_plus_three_cos_2theta(theta: &f64, phi: &f64) -> f64 {
-        // evaluates to 0
         let theta2 = theta.to_radians() * 2.0;
         1.0 + 3.0 * theta2.cos()
     }
 
     fn cos_2theta(theta: &f64, phi: &f64) -> f64 {
-        // evaluates to -(2/3) * 2\pi
         let theta2 = theta.to_radians() * 2.0;
         theta2.cos()
     }
 
     fn y00(theta: &f64, phi: &f64) -> f64 {
-        // evaluates to 3.544907701811
         1.0 / (2.0 * PI.sqrt())
     }
 
     fn y01(theta: &f64, phi: &f64) -> f64 {
-        // evaluates to 0
         0.5 * (3.0 / PI).sqrt() * theta.to_radians().cos()
     }
 
     fn y02(theta: &f64, phi: &f64) -> f64 {
-        // evaluates to 0
         0.25 * (5.0 / PI).sqrt()
             * ((3.0 * theta.to_radians().cos() * theta.to_radians().cos()) - 1.0)
     }
@@ -78,36 +76,44 @@ mod tests {
 
     #[test]
     fn cos_2theta_integral() {
+        // evaluates to -(2/3) * 2\pi
+        // evaluates to 0
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(cos_2theta);
         println!("{}", integral);
+        assert_abs_diff_eq!((-2.0 / 3.0 * 2.0 / PI), integral, epsilon=PRECISION);
     }
 
     #[test]
     fn one_plus_three_cos_2theta_integral() {
+        
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(one_plus_three_cos_2theta);
-        println!("{}", integral);
+        println!("{}, {}", ((-2.0 / 3.0) * 2.0 / PI), integral);
+        assert_abs_diff_eq!(0.0, integral, epsilon=PRECISION);
     }
 
     #[test]
     fn y00_integral() {
+        // evaluates to 4.0 * pi / (2.0 * sqrt(pi))
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(y00);
-        println!("{}", integral);
+        assert_abs_diff_eq!((4.0 * PI / 2.0 / PI.sqrt()), integral, epsilon=PRECISION);
     }
 
     #[test]
     fn y01_integral() {
+        // evaluates to 0
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(y01);
-        println!("{}", integral);
+        assert_abs_diff_eq!(0.0, integral, epsilon=PRECISION);
     }
 
     #[test]
     fn y02_integral() {
+        // evaluates to 0
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(y02);
-        println!("{}", integral);
+        assert_abs_diff_eq!(0.0, integral, epsilon=PRECISION);
     }
 }
