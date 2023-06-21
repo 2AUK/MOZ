@@ -1,4 +1,19 @@
 use std::f64::consts::PI;
+use crate::lebedev_data::{LebedevGrid, get_lebedev_grid};
+
+#[derive(Debug)]
+
+pub struct LebedevLaikovGrid {
+    weight: Vec<f64>,
+    coord: Vec<(f64, f64)>,
+}
+
+impl LebedevLaikovGrid {
+    pub fn new(grid: LebedevGrid) -> Self {
+        let grid = get_lebedev_grid(grid);
+        todo!()
+    }
+}
 
 #[derive(Debug)]
 pub struct GridSix {
