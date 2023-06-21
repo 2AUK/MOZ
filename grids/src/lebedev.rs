@@ -76,20 +76,17 @@ mod tests {
 
     #[test]
     fn cos_2theta_integral() {
-        // evaluates to -(2/3) * 2\pi
-        // evaluates to 0
+        // evaluates to -(2/3) * 2 * pi
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(cos_2theta);
-        println!("{}", integral);
-        assert_abs_diff_eq!((-2.0 / 3.0 * 2.0 / PI), integral, epsilon=PRECISION);
+        assert_abs_diff_eq!((-2.0 / 3.0 * 2.0 * PI), integral, epsilon=PRECISION);
     }
 
     #[test]
     fn one_plus_three_cos_2theta_integral() {
-        
+        // evaluates to 0
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD131);
         let integral = grid.integrate(one_plus_three_cos_2theta);
-        println!("{}, {}", ((-2.0 / 3.0) * 2.0 / PI), integral);
         assert_abs_diff_eq!(0.0, integral, epsilon=PRECISION);
     }
 
