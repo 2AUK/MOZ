@@ -1,5 +1,4 @@
 use std::f64::consts::PI;
-use crate::lebedev_data::LDGRIDS;
 
 #[derive(Debug)]
 pub struct GridSix {

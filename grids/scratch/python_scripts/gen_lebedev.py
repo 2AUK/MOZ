@@ -10,6 +10,7 @@ order_list = []
 const_list = []
 
 with open('lebedev_data.rs', 'w') as f:
+    f.write(f"use arrayvec::ArrayVec;\n")
     for path in data_paths:
         PHI, THETA, WEIGHTS = np.loadtxt(path, unpack=True)
 
@@ -22,14 +23,13 @@ with open('lebedev_data.rs', 'w') as f:
         order_list.append(ORDER)
         const_list.append(name)
 
-        f.write(f"use phf::phf_map;\n")
-        f.write(f"pub const {name}: [(f64, f64, f64); {ORDER}] = [\n")
+        f.write(f"pub const {name}: ArrayVec<(f64, f64, f64), {ORDER}> = ArrayVec::from([\n")
         for i in range(ORDER):
             phi = PHI[i]
             theta = THETA[i]
             weight = WEIGHTS[i]
             f.write(f"    ({theta}, {phi}, {weight}),\n")
-        f.write(f"];\n\n")
+        f.write(f"]);\n\n")
 
     f.write(f'static LDGRIDS: phf::Map<&\'static str, [(f64, f64, f64); N]> = phf_map! {{\n')
     for order, arr_name in zip(order_list, const_list):
