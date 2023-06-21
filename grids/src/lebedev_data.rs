@@ -47013,7 +47013,7 @@ static LD_OFFSETS: phf::Map<&'static str, (usize, usize)> = phf_map! {
     "LD131" => (41166, 46976),
 };
 
-pub enum LD_GRIDS {
+pub enum LDGrids {
     LD003,
     LD005,
     LD007,
@@ -47048,40 +47048,40 @@ pub enum LD_GRIDS {
     LD131,
 }
 
-pub fn get_LD_grid(grid: LD_GRIDS) -> &'static [(f64, f64, f64)] {
+pub fn get_lebedev_grid(grid: LDGrids) -> &'static [(f64, f64, f64)] {
     match grid {
-        LD_GRIDS::LD003 => &LD_DATA[LD_OFFSETS["LD003"].0..LD_OFFSETS["LD003"].1],
-        LD_GRIDS::LD005 => &LD_DATA[LD_OFFSETS["LD005"].0..LD_OFFSETS["LD005"].1],
-        LD_GRIDS::LD007 => &LD_DATA[LD_OFFSETS["LD007"].0..LD_OFFSETS["LD007"].1],
-        LD_GRIDS::LD009 => &LD_DATA[LD_OFFSETS["LD009"].0..LD_OFFSETS["LD009"].1],
-        LD_GRIDS::LD011 => &LD_DATA[LD_OFFSETS["LD011"].0..LD_OFFSETS["LD011"].1],
-        LD_GRIDS::LD013 => &LD_DATA[LD_OFFSETS["LD013"].0..LD_OFFSETS["LD013"].1],
-        LD_GRIDS::LD015 => &LD_DATA[LD_OFFSETS["LD015"].0..LD_OFFSETS["LD015"].1],
-        LD_GRIDS::LD017 => &LD_DATA[LD_OFFSETS["LD017"].0..LD_OFFSETS["LD017"].1],
-        LD_GRIDS::LD019 => &LD_DATA[LD_OFFSETS["LD019"].0..LD_OFFSETS["LD019"].1],
-        LD_GRIDS::LD021 => &LD_DATA[LD_OFFSETS["LD021"].0..LD_OFFSETS["LD021"].1],
-        LD_GRIDS::LD023 => &LD_DATA[LD_OFFSETS["LD023"].0..LD_OFFSETS["LD023"].1],
-        LD_GRIDS::LD025 => &LD_DATA[LD_OFFSETS["LD025"].0..LD_OFFSETS["LD025"].1],
-        LD_GRIDS::LD027 => &LD_DATA[LD_OFFSETS["LD027"].0..LD_OFFSETS["LD027"].1],
-        LD_GRIDS::LD029 => &LD_DATA[LD_OFFSETS["LD029"].0..LD_OFFSETS["LD029"].1],
-        LD_GRIDS::LD031 => &LD_DATA[LD_OFFSETS["LD031"].0..LD_OFFSETS["LD031"].1],
-        LD_GRIDS::LD035 => &LD_DATA[LD_OFFSETS["LD035"].0..LD_OFFSETS["LD035"].1],
-        LD_GRIDS::LD041 => &LD_DATA[LD_OFFSETS["LD041"].0..LD_OFFSETS["LD041"].1],
-        LD_GRIDS::LD047 => &LD_DATA[LD_OFFSETS["LD047"].0..LD_OFFSETS["LD047"].1],
-        LD_GRIDS::LD053 => &LD_DATA[LD_OFFSETS["LD053"].0..LD_OFFSETS["LD053"].1],
-        LD_GRIDS::LD059 => &LD_DATA[LD_OFFSETS["LD059"].0..LD_OFFSETS["LD059"].1],
-        LD_GRIDS::LD065 => &LD_DATA[LD_OFFSETS["LD065"].0..LD_OFFSETS["LD065"].1],
-        LD_GRIDS::LD071 => &LD_DATA[LD_OFFSETS["LD071"].0..LD_OFFSETS["LD071"].1],
-        LD_GRIDS::LD077 => &LD_DATA[LD_OFFSETS["LD077"].0..LD_OFFSETS["LD077"].1],
-        LD_GRIDS::LD083 => &LD_DATA[LD_OFFSETS["LD083"].0..LD_OFFSETS["LD083"].1],
-        LD_GRIDS::LD089 => &LD_DATA[LD_OFFSETS["LD089"].0..LD_OFFSETS["LD089"].1],
-        LD_GRIDS::LD095 => &LD_DATA[LD_OFFSETS["LD095"].0..LD_OFFSETS["LD095"].1],
-        LD_GRIDS::LD101 => &LD_DATA[LD_OFFSETS["LD101"].0..LD_OFFSETS["LD101"].1],
-        LD_GRIDS::LD107 => &LD_DATA[LD_OFFSETS["LD107"].0..LD_OFFSETS["LD107"].1],
-        LD_GRIDS::LD113 => &LD_DATA[LD_OFFSETS["LD113"].0..LD_OFFSETS["LD113"].1],
-        LD_GRIDS::LD119 => &LD_DATA[LD_OFFSETS["LD119"].0..LD_OFFSETS["LD119"].1],
-        LD_GRIDS::LD125 => &LD_DATA[LD_OFFSETS["LD125"].0..LD_OFFSETS["LD125"].1],
-        LD_GRIDS::LD131 => &LD_DATA[LD_OFFSETS["LD131"].0..LD_OFFSETS["LD131"].1],
+        LDGrids::LD003 => &LD_DATA[LD_OFFSETS["LD003"].0..LD_OFFSETS["LD003"].1],
+        LDGrids::LD005 => &LD_DATA[LD_OFFSETS["LD005"].0..LD_OFFSETS["LD005"].1],
+        LDGrids::LD007 => &LD_DATA[LD_OFFSETS["LD007"].0..LD_OFFSETS["LD007"].1],
+        LDGrids::LD009 => &LD_DATA[LD_OFFSETS["LD009"].0..LD_OFFSETS["LD009"].1],
+        LDGrids::LD011 => &LD_DATA[LD_OFFSETS["LD011"].0..LD_OFFSETS["LD011"].1],
+        LDGrids::LD013 => &LD_DATA[LD_OFFSETS["LD013"].0..LD_OFFSETS["LD013"].1],
+        LDGrids::LD015 => &LD_DATA[LD_OFFSETS["LD015"].0..LD_OFFSETS["LD015"].1],
+        LDGrids::LD017 => &LD_DATA[LD_OFFSETS["LD017"].0..LD_OFFSETS["LD017"].1],
+        LDGrids::LD019 => &LD_DATA[LD_OFFSETS["LD019"].0..LD_OFFSETS["LD019"].1],
+        LDGrids::LD021 => &LD_DATA[LD_OFFSETS["LD021"].0..LD_OFFSETS["LD021"].1],
+        LDGrids::LD023 => &LD_DATA[LD_OFFSETS["LD023"].0..LD_OFFSETS["LD023"].1],
+        LDGrids::LD025 => &LD_DATA[LD_OFFSETS["LD025"].0..LD_OFFSETS["LD025"].1],
+        LDGrids::LD027 => &LD_DATA[LD_OFFSETS["LD027"].0..LD_OFFSETS["LD027"].1],
+        LDGrids::LD029 => &LD_DATA[LD_OFFSETS["LD029"].0..LD_OFFSETS["LD029"].1],
+        LDGrids::LD031 => &LD_DATA[LD_OFFSETS["LD031"].0..LD_OFFSETS["LD031"].1],
+        LDGrids::LD035 => &LD_DATA[LD_OFFSETS["LD035"].0..LD_OFFSETS["LD035"].1],
+        LDGrids::LD041 => &LD_DATA[LD_OFFSETS["LD041"].0..LD_OFFSETS["LD041"].1],
+        LDGrids::LD047 => &LD_DATA[LD_OFFSETS["LD047"].0..LD_OFFSETS["LD047"].1],
+        LDGrids::LD053 => &LD_DATA[LD_OFFSETS["LD053"].0..LD_OFFSETS["LD053"].1],
+        LDGrids::LD059 => &LD_DATA[LD_OFFSETS["LD059"].0..LD_OFFSETS["LD059"].1],
+        LDGrids::LD065 => &LD_DATA[LD_OFFSETS["LD065"].0..LD_OFFSETS["LD065"].1],
+        LDGrids::LD071 => &LD_DATA[LD_OFFSETS["LD071"].0..LD_OFFSETS["LD071"].1],
+        LDGrids::LD077 => &LD_DATA[LD_OFFSETS["LD077"].0..LD_OFFSETS["LD077"].1],
+        LDGrids::LD083 => &LD_DATA[LD_OFFSETS["LD083"].0..LD_OFFSETS["LD083"].1],
+        LDGrids::LD089 => &LD_DATA[LD_OFFSETS["LD089"].0..LD_OFFSETS["LD089"].1],
+        LDGrids::LD095 => &LD_DATA[LD_OFFSETS["LD095"].0..LD_OFFSETS["LD095"].1],
+        LDGrids::LD101 => &LD_DATA[LD_OFFSETS["LD101"].0..LD_OFFSETS["LD101"].1],
+        LDGrids::LD107 => &LD_DATA[LD_OFFSETS["LD107"].0..LD_OFFSETS["LD107"].1],
+        LDGrids::LD113 => &LD_DATA[LD_OFFSETS["LD113"].0..LD_OFFSETS["LD113"].1],
+        LDGrids::LD119 => &LD_DATA[LD_OFFSETS["LD119"].0..LD_OFFSETS["LD119"].1],
+        LDGrids::LD125 => &LD_DATA[LD_OFFSETS["LD125"].0..LD_OFFSETS["LD125"].1],
+        LDGrids::LD131 => &LD_DATA[LD_OFFSETS["LD131"].0..LD_OFFSETS["LD131"].1],
     }
 }
 
@@ -47091,7 +47091,7 @@ mod tests {
 
     #[test]
     fn grid_selection() {
-        let grid = get_LD_grid(LD_GRIDS::LD131);
+        let grid = get_lebedev_grid(LDGrids::LD131);
         println!("{:?}", grid);
     }
 
@@ -47104,7 +47104,7 @@ mod tests {
         ];
         // Compute deltas from LDGRIDS hashmap
         let mut input_deltas = [0; 32];
-        for (i, (key, val)) in LD_OFFSETS.into_iter().enumerate() {
+        for (i, (_, val)) in LD_OFFSETS.into_iter().enumerate() {
             input_deltas[i] = val.1 - val.0;
         }
         // Sort values since the above loop doesn't iterate over the key value pairs in order
