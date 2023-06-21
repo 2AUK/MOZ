@@ -44,4 +44,16 @@ with open('lebedev_data.rs', 'w') as f:
     f.write(f'static LDGRIDS: phf::Map<&\'static str, (usize, usize)> = phf_map! {{\n')
     for offset, arr_name in zip(offset_list, const_list):
         f.write(f'    "{arr_name}" => {offset},\n')
-    f.write(f'}};\n')
+    f.write(f'}};\n\n')
+
+    f.write(f'pub enum LD_GRIDS {{\n')
+    for arr_name in const_list:
+        f.write(f'    {arr_name},\n')
+    f.write(f'}}\n\n')
+
+    f.write(f'pub fn get_LD_grid(grid: LD_GRIDS) -> &\'static [(f64, f64, f64)] {{\n')
+    f.write(f'    match grid {{\n')
+    for arr_name in const_list:
+        f.write(f'        LD_GRIDS::{arr_name} => &LD_DATA[LD_OFFSETS["{arr_name}"].0 .. LD_OFFSETS["{arr_name}"].1],\n')
+    f.write(f'    }}\n')
+    f.write(f'}}')

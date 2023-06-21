@@ -1,5 +1,5 @@
 use phf::phf_map;
-pub const LD_DATA: [(f64, f64, f64); 46976] = [
+const LD_DATA: [(f64, f64, f64); 46976] = [
     (90.0, 0.0, 0.166666666666667),
     (90.0, 180.0, 0.166666666666667),
     (90.0, 90.0, 0.166666666666667),
@@ -46978,7 +46978,7 @@ pub const LD_DATA: [(f64, f64, f64); 46976] = [
     (132.62628382015828, -177.72563734151274, 0.000190553449873),
 ];
 
-static LDGRIDS: phf::Map<&'static str, (usize, usize)> = phf_map! {
+static LD_OFFSETS: phf::Map<&'static str, (usize, usize)> = phf_map! {
     "LD003" => (0, 6),
     "LD005" => (6, 20),
     "LD007" => (20, 46),
@@ -47013,23 +47013,102 @@ static LDGRIDS: phf::Map<&'static str, (usize, usize)> = phf_map! {
     "LD131" => (41166, 46976),
 };
 
+pub enum LD_GRIDS {
+    LD003,
+    LD005,
+    LD007,
+    LD009,
+    LD011,
+    LD013,
+    LD015,
+    LD017,
+    LD019,
+    LD021,
+    LD023,
+    LD025,
+    LD027,
+    LD029,
+    LD031,
+    LD035,
+    LD041,
+    LD047,
+    LD053,
+    LD059,
+    LD065,
+    LD071,
+    LD077,
+    LD083,
+    LD089,
+    LD095,
+    LD101,
+    LD107,
+    LD113,
+    LD119,
+    LD125,
+    LD131,
+}
+
+pub fn get_LD_grid(grid: LD_GRIDS) -> &'static [(f64, f64, f64)] {
+    match grid {
+        LD_GRIDS::LD003 => &LD_DATA[LD_OFFSETS["LD003"].0..LD_OFFSETS["LD003"].1],
+        LD_GRIDS::LD005 => &LD_DATA[LD_OFFSETS["LD005"].0..LD_OFFSETS["LD005"].1],
+        LD_GRIDS::LD007 => &LD_DATA[LD_OFFSETS["LD007"].0..LD_OFFSETS["LD007"].1],
+        LD_GRIDS::LD009 => &LD_DATA[LD_OFFSETS["LD009"].0..LD_OFFSETS["LD009"].1],
+        LD_GRIDS::LD011 => &LD_DATA[LD_OFFSETS["LD011"].0..LD_OFFSETS["LD011"].1],
+        LD_GRIDS::LD013 => &LD_DATA[LD_OFFSETS["LD013"].0..LD_OFFSETS["LD013"].1],
+        LD_GRIDS::LD015 => &LD_DATA[LD_OFFSETS["LD015"].0..LD_OFFSETS["LD015"].1],
+        LD_GRIDS::LD017 => &LD_DATA[LD_OFFSETS["LD017"].0..LD_OFFSETS["LD017"].1],
+        LD_GRIDS::LD019 => &LD_DATA[LD_OFFSETS["LD019"].0..LD_OFFSETS["LD019"].1],
+        LD_GRIDS::LD021 => &LD_DATA[LD_OFFSETS["LD021"].0..LD_OFFSETS["LD021"].1],
+        LD_GRIDS::LD023 => &LD_DATA[LD_OFFSETS["LD023"].0..LD_OFFSETS["LD023"].1],
+        LD_GRIDS::LD025 => &LD_DATA[LD_OFFSETS["LD025"].0..LD_OFFSETS["LD025"].1],
+        LD_GRIDS::LD027 => &LD_DATA[LD_OFFSETS["LD027"].0..LD_OFFSETS["LD027"].1],
+        LD_GRIDS::LD029 => &LD_DATA[LD_OFFSETS["LD029"].0..LD_OFFSETS["LD029"].1],
+        LD_GRIDS::LD031 => &LD_DATA[LD_OFFSETS["LD031"].0..LD_OFFSETS["LD031"].1],
+        LD_GRIDS::LD035 => &LD_DATA[LD_OFFSETS["LD035"].0..LD_OFFSETS["LD035"].1],
+        LD_GRIDS::LD041 => &LD_DATA[LD_OFFSETS["LD041"].0..LD_OFFSETS["LD041"].1],
+        LD_GRIDS::LD047 => &LD_DATA[LD_OFFSETS["LD047"].0..LD_OFFSETS["LD047"].1],
+        LD_GRIDS::LD053 => &LD_DATA[LD_OFFSETS["LD053"].0..LD_OFFSETS["LD053"].1],
+        LD_GRIDS::LD059 => &LD_DATA[LD_OFFSETS["LD059"].0..LD_OFFSETS["LD059"].1],
+        LD_GRIDS::LD065 => &LD_DATA[LD_OFFSETS["LD065"].0..LD_OFFSETS["LD065"].1],
+        LD_GRIDS::LD071 => &LD_DATA[LD_OFFSETS["LD071"].0..LD_OFFSETS["LD071"].1],
+        LD_GRIDS::LD077 => &LD_DATA[LD_OFFSETS["LD077"].0..LD_OFFSETS["LD077"].1],
+        LD_GRIDS::LD083 => &LD_DATA[LD_OFFSETS["LD083"].0..LD_OFFSETS["LD083"].1],
+        LD_GRIDS::LD089 => &LD_DATA[LD_OFFSETS["LD089"].0..LD_OFFSETS["LD089"].1],
+        LD_GRIDS::LD095 => &LD_DATA[LD_OFFSETS["LD095"].0..LD_OFFSETS["LD095"].1],
+        LD_GRIDS::LD101 => &LD_DATA[LD_OFFSETS["LD101"].0..LD_OFFSETS["LD101"].1],
+        LD_GRIDS::LD107 => &LD_DATA[LD_OFFSETS["LD107"].0..LD_OFFSETS["LD107"].1],
+        LD_GRIDS::LD113 => &LD_DATA[LD_OFFSETS["LD113"].0..LD_OFFSETS["LD113"].1],
+        LD_GRIDS::LD119 => &LD_DATA[LD_OFFSETS["LD119"].0..LD_OFFSETS["LD119"].1],
+        LD_GRIDS::LD125 => &LD_DATA[LD_OFFSETS["LD125"].0..LD_OFFSETS["LD125"].1],
+        LD_GRIDS::LD131 => &LD_DATA[LD_OFFSETS["LD131"].0..LD_OFFSETS["LD131"].1],
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn grid_selection() {
-        let LD003 = &LD_DATA[LDGRIDS["LD003"].0 .. LDGRIDS["LD003"].1];
-        let LD005 = &LD_DATA[LDGRIDS["LD005"].0 .. LDGRIDS["LD005"].1];
-        let LD131 = &LD_DATA[LDGRIDS["LD131"].0 .. LDGRIDS["LD131"].1];
-        println!("{:?}\n{}", LD003.to_vec(), LD003.to_vec().len());
-        println!("{:?}\n{}", LD005.to_vec(), LD005.to_vec().len());
-        println!("{:?}\n{}", LD131.to_vec(), LD131.to_vec().len());
+        let grid = get_LD_grid(LD_GRIDS::LD131);
+        println!("{:?}", grid);
     }
 
     #[test]
     fn offset_deltas() {
-        todo!()
+        // Known values for deltas of each grid offset
+        let deltas = [
+            6, 14, 26, 38, 50, 74, 86, 110, 146, 170, 194, 230, 266, 302, 350, 434, 590, 770, 974,
+            1202, 1454, 1730, 2030, 2354, 2702, 3074, 3470, 3890, 4334, 4802, 5294, 5810,
+        ];
+        // Compute deltas from LDGRIDS hashmap
+        let mut input_deltas = [0; 32];
+        for (i, (key, val)) in LD_OFFSETS.into_iter().enumerate() {
+            input_deltas[i] = val.1 - val.0;
+        }
+        // Sort values since the above loop doesn't iterate over the key value pairs in order
+        input_deltas.sort();
+        assert_eq!(deltas, input_deltas);
     }
-
 }

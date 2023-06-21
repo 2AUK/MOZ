@@ -14,12 +14,23 @@ impl ChebyshevGauss {
         let mut nodes = Vec::new();
         let mut weights = Vec::new();
         for i in 0..order {
-            nodes.push(0.5 * (b + a) + 0.5 * (b - a) * ( (2.0 * (order - i) as f64 - 1.0) / (2.0 * order as f64) * PI).cos())
+            nodes.push(
+                0.5 * (b + a)
+                    + 0.5
+                        * (b - a)
+                        * ((2.0 * (order - i) as f64 - 1.0) / (2.0 * order as f64) * PI).cos(),
+            )
         }
         for i in 0..order {
             weights.push(PI / order as f64);
         }
-        ChebyshevGauss { a, b, order, nodes, weights }
+        ChebyshevGauss {
+            a,
+            b,
+            order,
+            nodes,
+            weights,
+        }
     }
 
     // evaluates to 3.977463260506145
@@ -45,4 +56,3 @@ mod tests {
         println!("{:?}", grid.integrate());
     }
 }
-

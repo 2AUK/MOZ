@@ -1,5 +1,6 @@
 fn main() {
-    println!("
+    println!(
+        "
      dMMMMMMMMb  .aMMMb dMMMMMP 
     dMP\"dMP\"dMP dMP\"dMP  .dMP\"  
    dMP dMP dMP dMP dMP .dMP\"    
@@ -8,7 +9,6 @@ fn main() {
 
  MOZ, the Molecular Ornstein-Zernike Solver...
  We solve things so you don't have to
-                                ");
+                                "
+    );
 }
-
-                               
