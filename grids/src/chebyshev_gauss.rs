@@ -53,6 +53,6 @@ mod tests {
     #[test]
     fn grid_initialisation_cheby() {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 8);
-        //println!("{:?}", grid.integrate());
+        println!("{:?}", grid.integrate());
     }
 }

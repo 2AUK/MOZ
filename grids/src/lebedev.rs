@@ -22,7 +22,7 @@ impl LebedevLaikovGrid {
     }
 
     pub fn integrate(&self, f: fn(&f64, &f64) -> f64) -> f64 {
-        let mut grid_iter = zip(&self.weight, &self.coord);
+        let grid_iter = zip(&self.weight, &self.coord);
         4.0 * PI * grid_iter.map(|(weight, (theta, phi))| weight * f(theta, phi)).sum::<f64>()
     }
 }
@@ -30,29 +30,29 @@ impl LebedevLaikovGrid {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use approx::{assert_abs_diff_eq, relative_eq};
+    use approx::assert_abs_diff_eq;
 
     const PRECISION: f64 = 1e-7;
 
-    fn one_plus_three_cos_2theta(theta: &f64, phi: &f64) -> f64 {
+    fn one_plus_three_cos_2theta(theta: &f64, _phi: &f64) -> f64 {
         let theta2 = theta.to_radians() * 2.0;
         1.0 + 3.0 * theta2.cos()
     }
 
-    fn cos_2theta(theta: &f64, phi: &f64) -> f64 {
+    fn cos_2theta(theta: &f64, _phi: &f64) -> f64 {
         let theta2 = theta.to_radians() * 2.0;
         theta2.cos()
     }
 
-    fn y00(theta: &f64, phi: &f64) -> f64 {
+    fn y00(_theta: &f64, _phi: &f64) -> f64 {
         1.0 / (2.0 * PI.sqrt())
     }
 
-    fn y01(theta: &f64, phi: &f64) -> f64 {
+    fn y01(theta: &f64, _phi: &f64) -> f64 {
         0.5 * (3.0 / PI).sqrt() * theta.to_radians().cos()
     }
 
-    fn y02(theta: &f64, phi: &f64) -> f64 {
+    fn y02(theta: &f64, _phi: &f64) -> f64 {
         0.25 * (5.0 / PI).sqrt()
             * ((3.0 * theta.to_radians().cos() * theta.to_radians().cos()) - 1.0)
     }
