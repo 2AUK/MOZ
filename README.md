@@ -1,9 +1,8 @@
 # Molecular Ornstein-Zernike
 
 ## Current Status
-Working on implementing angular quadratures
-    -[x] Lebedev-Laikov Quadrature
-    -[ ] Chebyshev-Gauss Quadrature
+- [x] Lebedev-Laikov Quadrature
+- [ ] Chebyshev-Gauss Quadrature
 
 ## Installing and Running
 1. [Install Rust](https://www.rust-lang.org/tools/install)
