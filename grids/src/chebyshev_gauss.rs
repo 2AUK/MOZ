@@ -38,7 +38,7 @@ mod tests {
     use super::*;
     use approx::assert_abs_diff_eq;
 
-    const PRECISION: f64 = 1e-7;
+    const PRECISION: f64 = 1e-10;
 
     fn compute_exp(x: &f64) -> f64 {
         x.exp()
@@ -48,8 +48,8 @@ mod tests {
     fn grid_initialisation_chebyshev_check_weights() {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 4);
         let test_grid = ChebyshevGauss {
-            weights: vec![0.7853981634, 0.7853981634, 0.7853981634, 0.7853981634],
-            nodes: vec![-0.9238795325, -0.3826834324, 0.3826834324, 0.9238795325],
+            weights: vec![0.7853981633974483, 0.7853981633974483, 0.7853981633974483, 0.7853981633974483],
+            nodes: vec![-0.9238795325112867, -0.3826834323650898, 0.3826834323650897, 0.9238795325112867],
         };
         assert_abs_diff_eq!(
             test_grid.weights.as_slice(),
@@ -62,8 +62,8 @@ mod tests {
     fn grid_initialisation_chebyshev_check_nodes() {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 4);
         let test_grid = ChebyshevGauss {
-            weights: vec![0.7853981634, 0.7853981634, 0.7853981634, 0.7853981634],
-            nodes: vec![-0.9238795325, -0.3826834324, 0.3826834324, 0.9238795325],
+            weights: vec![0.7853981633974483, 0.7853981633974483, 0.7853981633974483, 0.7853981633974483],
+            nodes: vec![-0.9238795325112867, -0.3826834323650898, 0.3826834323650897, 0.9238795325112867],
         };
         assert_abs_diff_eq!(
             test_grid.nodes.as_slice(),

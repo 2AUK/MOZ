@@ -35,7 +35,7 @@ mod tests {
     use super::*;
     use approx::assert_abs_diff_eq;
 
-    const PRECISION: f64 = 1e-7;
+    const PRECISION: f64 = 1e-10;
 
     fn one_plus_three_cos_2theta(theta: &f64, _phi: &f64) -> f64 {
         let theta2 = theta.to_radians() * 2.0;
