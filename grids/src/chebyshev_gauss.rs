@@ -22,10 +22,7 @@ impl ChebyshevGauss {
         for _i in 0..order {
             weights.push(PI / order as f64);
         }
-        ChebyshevGauss {
-            nodes,
-            weights,
-        }
+        ChebyshevGauss { nodes, weights }
     }
 
     pub fn integrate(&self, f: fn(&f64) -> f64) -> f64 {
@@ -52,9 +49,13 @@ mod tests {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 4);
         let test_grid = ChebyshevGauss {
             weights: vec![0.7853981634, 0.7853981634, 0.7853981634, 0.7853981634],
-            nodes: vec![-0.9238795325, -0.3826834324, 0.3826834324, 0.9238795325]
+            nodes: vec![-0.9238795325, -0.3826834324, 0.3826834324, 0.9238795325],
         };
-        assert_abs_diff_eq!(test_grid.weights.as_slice(), grid.weights.as_slice(), epsilon=PRECISION);
+        assert_abs_diff_eq!(
+            test_grid.weights.as_slice(),
+            grid.weights.as_slice(),
+            epsilon = PRECISION
+        );
     }
 
     #[test]
@@ -62,9 +63,13 @@ mod tests {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 4);
         let test_grid = ChebyshevGauss {
             weights: vec![0.7853981634, 0.7853981634, 0.7853981634, 0.7853981634],
-            nodes: vec![-0.9238795325, -0.3826834324, 0.3826834324, 0.9238795325]
+            nodes: vec![-0.9238795325, -0.3826834324, 0.3826834324, 0.9238795325],
         };
-        assert_abs_diff_eq!(test_grid.nodes.as_slice(), grid.nodes.as_slice(), epsilon=PRECISION);
+        assert_abs_diff_eq!(
+            test_grid.nodes.as_slice(),
+            grid.nodes.as_slice(),
+            epsilon = PRECISION
+        );
     }
 
     #[test]
@@ -72,6 +77,6 @@ mod tests {
         // evaluates to 3.977463260506145
         let grid = ChebyshevGauss::new(-1.0, 1.0, 5810);
         let integral = grid.integrate(compute_exp);
-        assert_abs_diff_eq!(3.977463260506145, integral, epsilon=PRECISION);
+        assert_abs_diff_eq!(3.977463260506145, integral, epsilon = PRECISION);
     }
 }
