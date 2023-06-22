@@ -24,6 +24,8 @@ $$\int_{-1}^{1} dx \frac{e^x}{\sqrt{1-x^2}} \approx 3.977463260506145 $$
 
 ## References
 
-[Application of efficient algorithm for solving six-dimensional molecular Ornstein-Zernike equation](https://doi.org/10.1063/1.3693623)
-[Extended molecular Ornstein-Zernike integral equation for fully anisotropic solute molecules: Formulation in a rectangular coordinate system](https://doi.org/10.1063/1.4819211)
-[Integral equation algorithm for fluids of fully anisotropic molecules](https://doi.org/10.1063/1.469615)
+- [Application of efficient algorithm for solving six-dimensional molecular Ornstein-Zernike equation](https://doi.org/10.1063/1.3693623)
+
+- [Extended molecular Ornstein-Zernike integral equation for fully anisotropic solute molecules: Formulation in a rectangular coordinate system](https://doi.org/10.1063/1.4819211)
+
+-[Integral equation algorithm for fluids of fully anisotropic molecules](https://doi.org/10.1063/1.469615)
