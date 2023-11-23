@@ -1,32 +1,51 @@
 use crate::lebedev_data::{get_lebedev_grid, LebedevGrid};
+use ndarray::{arr1, Array, Array1, Zip};
 use std::f64::consts::PI;
-use std::iter::zip;
 
 #[derive(Debug, PartialEq)]
 
 pub struct LebedevLaikovGrid {
-    weight: Vec<f64>,
-    coord: Vec<(f64, f64)>,
+    weights: Array1<f64>,
+    //coord: Vec<(f64, f64)>,
+    theta: Array1<f64>,
+    phi: Array1<f64>,
 }
 
 impl LebedevLaikovGrid {
     pub fn new(grid: LebedevGrid) -> Self {
         let grid = get_lebedev_grid(grid);
-        let mut weight = Vec::new();
-        let mut coord = Vec::new();
-        for elem in grid {
-            weight.push(elem.2);
-            coord.push((elem.0, elem.1));
+        let grid_size = grid.len();
+        let mut weights = Array::zeros(grid_size);
+        let mut theta = Array::zeros(grid_size);
+        let mut phi = Array::zeros(grid_size);
+        for (i, elem) in grid.iter().enumerate() {
+            weights[[i]] = elem.2;
+            theta[[i]] = elem.0;
+            phi[[i]] = elem.1;
         }
-        LebedevLaikovGrid { weight, coord }
+        LebedevLaikovGrid {
+            weights,
+            theta,
+            phi,
+        }
     }
 
     pub fn integrate(&self, f: fn(&f64, &f64) -> f64) -> f64 {
-        let grid_iter = zip(&self.weight, &self.coord);
-        4.0 * PI
-            * grid_iter
-                .map(|(weight, (theta, phi))| weight * f(theta, phi))
-                .sum::<f64>()
+        let mut _out = Array::zeros(self.weights.raw_dim());
+        Zip::from(&self.weights)
+            .and(&self.theta)
+            .and(&self.phi)
+            .and(&mut _out)
+            .par_for_each(|w, t, p, o| {
+                *o = w * f(&t, &p);
+            });
+
+        4.0 * PI * _out.iter().sum::<f64>()
+        // let grid_iter = zip(&self.weight, &self.theta, &self.phi);
+        // 4.0 * PI
+        //     * grid_iter
+        //         .map(|(weight, (theta, phi))| weight * f(theta, phi))
+        //         .sum::<f64>()
     }
 }
 
@@ -64,22 +83,16 @@ mod tests {
     fn grid_initialisation() {
         let grid = LebedevLaikovGrid::new(LebedevGrid::LD003);
         let test_grid = LebedevLaikovGrid {
-            weight: vec![
+            weights: arr1(&[
                 0.166666666666667,
                 0.166666666666667,
                 0.166666666666667,
                 0.166666666666667,
                 0.166666666666667,
                 0.166666666666667,
-            ],
-            coord: vec![
-                (90.0, 0.0),
-                (90.0, 180.0),
-                (90.0, 90.0),
-                (90.0, -90.0),
-                (0.0, 90.0),
-                (180.0, 90.0),
-            ],
+            ]),
+            theta: arr1(&[90.0, 90.0, 90.0, 90.0, 0.0, 180.0]),
+            phi: arr1(&[0.0, 180.0, 90.0, -90.0, 90.0, 90.0]),
         };
         assert_eq!(grid, test_grid);
     }

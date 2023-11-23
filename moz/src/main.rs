@@ -1,3 +1,5 @@
+pub mod potentials;
+
 fn main() {
     println!(
         "

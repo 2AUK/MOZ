@@ -1,35 +1,38 @@
+use ndarray::{arr1, Array, Array1, Zip};
 use std::f64::consts::PI;
-use std::iter::zip;
 
 #[derive(Debug, PartialEq)]
 pub struct ChebyshevGauss {
-    nodes: Vec<f64>,
-    weights: Vec<f64>,
+    nodes: Array1<f64>,
+    weights: Array1<f64>,
 }
 
 impl ChebyshevGauss {
-    pub fn new(a_limit: f64, b_limit: f64, order: u32) -> Self {
-        let mut nodes = Vec::new();
-        let mut weights = Vec::new();
+    pub fn new(a_limit: f64, b_limit: f64, order: usize) -> Self {
+        let mut nodes = Array::zeros(order);
+        let mut weights = Array::zeros(order);
         for i in 0..order {
-            nodes.push(
-                0.5 * (b_limit + a_limit)
-                    + 0.5
-                        * (b_limit - a_limit)
-                        * ((2.0 * (order - i) as f64 - 1.0) / (2.0 * order as f64) * PI).cos(),
-            )
+            nodes[[i]] = 0.5 * (b_limit + a_limit)
+                + 0.5
+                    * (b_limit - a_limit)
+                    * ((2.0 * (order - i) as f64 - 1.0) / (2.0 * order as f64) * PI).cos()
         }
-        for _i in 0..order {
-            weights.push(PI / order as f64);
+        for i in 0..order {
+            weights[[i]] = PI / order as f64;
         }
         ChebyshevGauss { nodes, weights }
     }
 
     pub fn integrate(&self, f: fn(&f64) -> f64) -> f64 {
-        let grid_iter = zip(&self.weights, &self.nodes);
-        grid_iter
-            .map(|(weight, node)| weight * f(node))
-            .sum::<f64>()
+        let mut _out = Array::zeros(self.weights.raw_dim());
+        Zip::from(&self.weights)
+            .and(&self.nodes)
+            .and(&mut _out)
+            .par_for_each(|w, n, o| {
+                *o = w * f(&n);
+            });
+
+        _out.iter().sum::<f64>()
     }
 }
 
@@ -48,48 +51,40 @@ mod tests {
     fn grid_initialisation_chebyshev_check_weights() {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 4);
         let test_grid = ChebyshevGauss {
-            weights: vec![
+            weights: arr1(&[
                 0.7853981633974483,
                 0.7853981633974483,
                 0.7853981633974483,
                 0.7853981633974483,
-            ],
-            nodes: vec![
+            ]),
+            nodes: arr1(&[
                 -0.9238795325112867,
                 -0.3826834323650898,
                 0.3826834323650897,
                 0.9238795325112867,
-            ],
+            ]),
         };
-        assert_abs_diff_eq!(
-            test_grid.weights.as_slice(),
-            grid.weights.as_slice(),
-            epsilon = PRECISION
-        );
+        assert_abs_diff_eq!(test_grid.weights, grid.weights, epsilon = PRECISION);
     }
 
     #[test]
     fn grid_initialisation_chebyshev_check_nodes() {
         let grid = ChebyshevGauss::new(-1.0, 1.0, 4);
         let test_grid = ChebyshevGauss {
-            weights: vec![
+            weights: arr1(&[
                 0.7853981633974483,
                 0.7853981633974483,
                 0.7853981633974483,
                 0.7853981633974483,
-            ],
-            nodes: vec![
+            ]),
+            nodes: arr1(&[
                 -0.9238795325112867,
                 -0.3826834323650898,
                 0.3826834323650897,
                 0.9238795325112867,
-            ],
+            ]),
         };
-        assert_abs_diff_eq!(
-            test_grid.nodes.as_slice(),
-            grid.nodes.as_slice(),
-            epsilon = PRECISION
-        );
+        assert_abs_diff_eq!(test_grid.nodes, grid.nodes, epsilon = PRECISION);
     }
 
     #[test]
