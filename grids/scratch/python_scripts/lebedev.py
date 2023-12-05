@@ -27,10 +27,11 @@ def integrate(f):
         sum += weights[i] * f(phi[i], theta[i])
     return 4.0 * np.pi * sum
 
+print("order: {order}".format(order=order))
 print(integrate(zero), integrate(cos2theta), integrate(Y00), integrate(Y10), integrate(Y20))
 
 THETA, PHI = np.deg2rad(phi), np.deg2rad(theta)#np.meshgrid(np.deg2rad(theta), np.deg2rad(phi))
-R = np.abs(Y20(np.rad2deg(PHI), np.rad2deg(THETA)))
+R = 1.0 #np.abs(Y10(np.rad2deg(PHI), np.rad2deg(THETA)))
 X = R * np.sin(PHI) * np.cos(THETA)
 Y = R * np.sin(PHI) * np.sin(THETA)
 Z = R * np.cos(PHI)

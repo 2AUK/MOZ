@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import mpl_toolkits.mplot3d.axes3d as axes3d
 
 N = 15
 
@@ -31,5 +32,18 @@ def lagrange_interpolant(x, f):
     
     return p
 
-x = chebyshev_nodes(0, np.pi, 6)
-print(x)
+PHI, THETA = chebyshev_nodes(0, np.pi, 40), chebyshev_nodes(-np.pi, np.pi, 40)
+
+R = 1.0 #np.abs(Y10(np.rad2deg(PHI), np.rad2deg(THETA)))
+X = R * np.sin(PHI) * np.cos(THETA)
+Y = R * np.sin(PHI) * np.sin(THETA)
+Z = R * np.cos(PHI)
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+plot = ax.scatter(
+    X, Y, Z
+    )
+
+plt.show()
+
